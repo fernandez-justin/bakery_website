@@ -1,36 +1,22 @@
-export default function RecipePage({
+import { recipes } from "@/data/recipes";
+
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default async function RecipePage({
   params,
-}: {
-  params: { slug: string };
-}) {
-  // This would typically fetch recipe data from a database or CMS
-  const recipe = {
-    title: "Classic Chocolate Cake",
-    description: "A moist and rich chocolate cake that's perfect for any occasion",
-    videoId: "YOUR_YOUTUBE_VIDEO_ID",
-    ingredients: [
-      "2 cups all-purpose flour",
-      "2 cups sugar",
-      "3/4 cup unsweetened cocoa powder",
-      "2 teaspoons baking soda",
-      "1 teaspoon salt",
-      "2 eggs",
-      "1 cup milk",
-      "1/2 cup vegetable oil",
-      "2 teaspoons vanilla extract",
-      "1 cup boiling water",
-    ],
-    instructions: [
-      "Preheat oven to 350°F (175°C). Grease and flour two 9-inch cake pans.",
-      "In a large bowl, combine flour, sugar, cocoa, baking soda, and salt.",
-      "Add eggs, milk, oil, and vanilla. Beat on medium speed for 2 minutes.",
-      "Stir in boiling water. Batter will be thin.",
-      "Pour into prepared pans.",
-      "Bake for 30-35 minutes or until a toothpick inserted comes out clean.",
-      "Cool in pans for 10 minutes, then remove to wire racks to cool completely.",
-    ],
-    publishedDate: "2024-04-01",
-  };
+}: PageProps) {
+  const { slug } = await params;
+  const recipe = recipes.find((r) => r.slug === slug);
+
+  if (!recipe) {
+    return (
+      <div className="text-center py-12">
+        <h1 className="text-2xl font-bold text-baking-chocolate">Recipe not found</h1>
+      </div>
+    );
+  }
 
   return (
     <article className="max-w-4xl mx-auto space-y-8">
@@ -48,9 +34,13 @@ export default function RecipePage({
       <section className="bg-baking-sugar rounded-lg shadow-md p-6 border border-baking-butter">
         <h2 className="text-2xl font-bold text-baking-chocolate mb-4 font-serif">Watch the Tutorial</h2>
         <div className="aspect-w-16 aspect-h-9">
-          <div className="bg-baking-cream rounded-lg flex items-center justify-center h-64 border border-baking-butter">
-            <p className="text-baking-light-brown">[YouTube video will be embedded here]</p>
-          </div>
+          <iframe
+            className="w-full h-64 rounded-lg"
+            src={`https://www.youtube.com/embed/${recipe.videoId}`}
+            title={recipe.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
       </section>
 

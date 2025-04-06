@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 const playfair = Playfair_Display({ subsets: ["latin"] });
@@ -23,23 +24,23 @@ export default function RootLayout({
             <div className="flex justify-between h-16">
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
-                  <a href="/" className={`${playfair.className} text-2xl font-bold text-baking-chocolate hover:text-baking-caramel transition-colors`}>
+                  <Link href="/" className={`${playfair.className} text-3xl font-bold text-baking-chocolate hover:text-baking-caramel transition-colors`}>
                     Baking with Justin
-                  </a>
+                  </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  <a
+                  <Link
                     href="/"
                     className="border-transparent text-baking-chocolate hover:border-baking-cinnamon hover:text-baking-caramel inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors"
                   >
                     Home
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/recipes"
                     className="border-transparent text-baking-chocolate hover:border-baking-cinnamon hover:text-baking-caramel inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors"
                   >
                     Recipes
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

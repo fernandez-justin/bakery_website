@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from "next/link";
 import { recipes } from "@/data/recipes";
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
         <h2 className="text-2xl font-bold text-baking-chocolate mb-4 font-serif">About Me</h2>
         <div className="prose max-w-none text-baking-light-brown">
           <p>
-            Hi! I'm Justin, a passionate baker who loves sharing my baking journey and helping others
+            Hi! I&apos;m Justin, a passionate baker who loves sharing my baking journey and helping others
             discover the joy of creating delicious treats in their own kitchen.
           </p>
         </div>
@@ -39,12 +39,12 @@ export default function Home() {
             <p className="text-baking-light-brown mb-4">
               {mostRecentRecipe.description}
             </p>
-            <a
+            <Link
               href={`/recipes/${mostRecentRecipe.slug}`}
               className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-baking-sugar bg-baking-chocolate hover:bg-baking-caramel transition-colors"
             >
               View Recipe
-            </a>
+            </Link>
           </div>
           <div className="bg-baking-cream rounded-lg flex items-center justify-center h-48 border border-baking-butter">
             <p className="text-baking-light-brown">[Recipe Image]</p>

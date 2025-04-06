@@ -1,23 +1,7 @@
-export default function Recipes() {
-  // This would typically come from a database or CMS
-  const recipes = [
-    {
-      id: 1,
-      title: "Classic Chocolate Cake",
-      description: "A moist and rich chocolate cake that's perfect for any occasion",
-      image: "/placeholder.jpg",
-      slug: "classic-chocolate-cake",
-    },
-    {
-      id: 2,
-      title: "Sourdough Bread",
-      description: "Traditional sourdough bread with a perfect crust",
-      image: "/placeholder.jpg",
-      slug: "sourdough-bread",
-    },
-    // Add more recipes here
-  ];
+import Link from "next/link";
+import { recipes } from "@/data/recipes";
 
+export default function Recipes() {
   return (
     <div className="space-y-6">
       <div className="text-center bg-baking-butter rounded-lg py-8 border border-baking-cinnamon/20">
@@ -43,12 +27,12 @@ export default function Recipes() {
                 {recipe.title}
               </h2>
               <p className="text-baking-light-brown mb-4">{recipe.description}</p>
-              <a
+              <Link
                 href={`/recipes/${recipe.slug}`}
                 className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-baking-sugar bg-baking-chocolate hover:bg-baking-caramel transition-colors"
               >
                 View Recipe
-              </a>
+              </Link>
             </div>
           </div>
         ))}
